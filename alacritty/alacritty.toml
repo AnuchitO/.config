@@ -7,17 +7,22 @@ import = ["~/.config/alacritty/themes/dracula/dracula.toml"]
 [env]
 TERM = "xterm-256color"
 
+# `fc-list : family style |grep JetBranins` to get the font family and style
 [font]
-size = 16
+size = 18
 
 [font.normal]
 family = "JetBrains Mono NL"
-style = "Italic"
+style = "Light Italic"
 
 [font.bold]
+family = "JetBrains Mono NL"
+style = "ExtraBold Italic,Italic"
+
+[font.bold_italic]
 family = "JetBrains Mono NL"
 style = "Bold Italic"
 
 [font.italic]
 family = "JetBrains Mono NL"
-style = "Italic"
+style = "ExtraBold Italic"
