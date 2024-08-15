@@ -38,7 +38,7 @@ y = 16
 opacity = 1.0
 # decorations = "Full" | "None" | "Transparent" | "Buttonless"
 # decorations = "None" # for no title bar
-
+dimensions = { columns = 100, lines = 30 }
 
 [keyboard]
 bindings = [
