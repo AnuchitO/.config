@@ -1,0 +1,23 @@
+# documentation: https://wiki.archlinux.org/title/Alacritty
+
+# themes:
+# dracula: git clone https://github.com/dracula/alacritty to ~/.config/alacritty/themes/dracula
+import = ["~/.config/alacritty/themes/dracula/dracula.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16
+
+[font.normal]
+family = "JetBrains Mono NL"
+style = "Italic"
+
+[font.bold]
+family = "JetBrains Mono NL"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrains Mono NL"
+style = "Italic"
