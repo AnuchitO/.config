@@ -26,3 +26,12 @@ end)
 ```vim
 PackerSync
 ```
+
+## Pre-requisites
+inorder to use "Grep > " need to install ripgrep
+https://github.com/BurntSushi/ripgrep
+
+```
+brew install ripgrep
+```
+
