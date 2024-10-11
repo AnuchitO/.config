@@ -35,3 +35,11 @@ https://github.com/BurntSushi/ripgrep
 brew install ripgrep
 ```
 
+
+## Telescope
+
+```command
+<C-p>  move thought list previous (up)
+<C-n> move thought list next (down)
+```
+
