@@ -43,3 +43,5 @@ brew install ripgrep
 <C-n> move thought list next (down)
 ```
 
+https://github.com/ThePrimeagen/harpoon
+
