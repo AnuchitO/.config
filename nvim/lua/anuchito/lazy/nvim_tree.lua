@@ -25,16 +25,43 @@ return {
                 width = 30,
             },
             renderer = {
+                add_trailing = false,
                 root_folder_label = function(path)
                     return "[" .. vim.fn.fnamemodify(path, ":t") .. "]"
                 end,
                 icons = {
                     show = {
-                        file = false,   -- Hide file icons
-                        folder_arrow = false,
-                        folder = false, -- Hide folder icons
+                        file = true,   -- Hide file icons
+                        folder_arrow = true,
+                        folder = true, -- Hide folder icons
                         git = false,
                     },
+                    -- glyphs = {
+                    --     default = "",
+                    --     symlink = "",
+                    --     bookmark = "󰆤",
+                    --     modified = "●",
+                    --     hidden = "󰜌",
+                    --     folder = {
+                    --         arrow_closed = "",
+                    --         arrow_open = "",
+                    --         default = "",
+                    --         open = "",
+                    --         empty = "",
+                    --         empty_open = "",
+                    --         symlink = "",
+                    --         symlink_open = "",
+                    --     },
+                    --     git = {
+                    --         unstaged = "✗",
+                    --         staged = "✓",
+                    --         unmerged = "",
+                    --         renamed = "➜",
+                    --         untracked = "★",
+                    --         deleted = "",
+                    --         ignored = "◌",
+                    --     },
+                    -- },
                 },
                 highlight_opened_files = "all",
                 group_empty = true,
@@ -44,7 +71,7 @@ return {
                 custom = { ".git" }, -- exclude the .git folder
             },
             git = {
-                enable = false, -- Disable Git status
+                enable = true, -- Disable Git status
             },
         })
 
