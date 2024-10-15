@@ -11,6 +11,8 @@
     - https://github.com/github/copilot.vim
 [ ] Open new project very quickly maybe use Tmux
 
+[ ] LSP
+    - https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
 ## Install Fonts
 
 ```sh
