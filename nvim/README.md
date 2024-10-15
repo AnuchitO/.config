@@ -1,17 +1,20 @@
 # Feature List
 
-[ ] Multi Cursors Edit
+[x] Multi Cursors Edit
+    - https://github.com/mg979/vim-visual-multi
 [x] File explorer
     - auto focus opening file
     - toggle on and off
-[ ] Undo
+[x] Undo
     - undo history even close file and reopen it.
-[ ] Copilot
+[x] Copilot
+    - https://github.com/github/copilot.vim
+[ ] Open new project very quickly maybe use Tmux
 
 ## Install Fonts
 
 ```sh
-brew install font-hack-nerd-font
+family = "JetBrainsMonoNL Nerd Font"
 ```
 
 ## link vim to nvim in homebrew
@@ -86,6 +89,8 @@ C-b S-L
 ## vim
 
 `<C-w-S-j>` to move panel around
+`<C-o>` jump back to previous location
+`<C-i>` jump forward to next location
 
 ## nvim-tree
 
