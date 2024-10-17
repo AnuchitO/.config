@@ -88,11 +88,18 @@ go back to previous sesssion
 C-b S-L
 ```
 
-## vim
+## default vim
 
 `<C-w-S-j>` to move panel around
 `<C-o>` jump back to previous location
 `<C-i>` jump forward to next location
+
+`:map` to list all keybinding
+`:map <C-o>` to check keybinding for `<C-o>`
+
+moving back and forward when search inline
+`;` to move back
+`'` to move forward
 
 ## nvim-tree
 
@@ -106,3 +113,8 @@ C-b S-L
 `D`               Trash                      |nvim-tree-api.fs.trash()|
 `a`               Create File Or Directory   |nvim-tree-api.fs.create()|
 
+## commment
+
+custom:
+`<leader>cl` to comment line
+`<leader>cb` to comment block
