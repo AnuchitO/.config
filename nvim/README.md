@@ -88,6 +88,16 @@ go back to previous sesssion
 C-b S-L
 ```
 
+quick switch between windows
+```
+C-b p
+```
+
+create new window
+```
+C-b n
+```
+
 ## default vim
 
 `<C-w-S-j>` to move panel around
@@ -101,6 +111,10 @@ moving back and forward when search inline
 `;` to move back
 `'` to move forward
 
+`:e!` to reload file
+
+`zz` to center the screen by current line in the middle of screen
+
 ## nvim-tree
 
 `<C-v>`           Open: Vertical Split       |nvim-tree-api.node.open.vertical()|
@@ -112,6 +126,8 @@ moving back and forward when search inline
 `P`               Parent Directory           |nvim-tree-api.node.navigate.parent()|
 `D`               Trash                      |nvim-tree-api.fs.trash()|
 `a`               Create File Or Directory   |nvim-tree-api.fs.create()|
+`f`               Find File                  |nvim-tree-api.fs.find()|
+`F`               Close Find File            |nvim-tree-api.fs.find.close()|
 
 ## commment
 
