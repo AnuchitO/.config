@@ -115,6 +115,12 @@ moving back and forward when search inline
 
 `zz` to center the screen by current line in the middle of screen
 
+`_` to move to the first non-blank character of the line
+
+`$` to move to the end of the line
+
+`0` to move to the beginning of the line
+
 ## nvim-tree
 
 `<C-v>`           Open: Vertical Split       |nvim-tree-api.node.open.vertical()|

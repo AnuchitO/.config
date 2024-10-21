@@ -26,9 +26,21 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
-                "rust_analyzer",
+                "clojure_lsp",
+                "dotls",
+                "eslint",
                 "gopls",
+                "html",
+                "jsonls",
+                "lua_ls",
+                "markdown_oxide",
+                "robotframework_ls",
+                "rust_analyzer",
+                "tailwindcss",
+                "taplo",
+                "ts_ls",
+                "vimls",
+                "yamlls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)

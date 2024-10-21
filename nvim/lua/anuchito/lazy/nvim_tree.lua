@@ -69,10 +69,11 @@ return {
             filters = {
                 dotfiles = false,    -- show dotfiles
                 custom = { ".git" }, -- exclude the .git folder
+                exclude = { ".local", ".gitignore" },
             },
-            git = {
-                enable = true, -- Disable Git status
-            },
+            -- git = {
+            --     enable = true, -- Disable Git status
+            -- },
         })
 
         -- Keymaps for nvim-tree
