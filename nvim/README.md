@@ -121,6 +121,22 @@ moving back and forward when search inline
 
 `0` to move to the beginning of the line
 
+`[d` to go to diagnostic (go to error) `vim.keymap.set('n', [d', vim.diagnostic.goto_prev, {})`
+`]d` to go to diagnostic (go to error) `vim.keymap.set('n', [d', vim.diagnostic.goto_next, {})`
+
+`<C-]>` to go to definition
+
+`<C-^>` to switch between file
+
+`b` move to beginning of the curent word
+`e` move to end of the current word
+`<S-b>` move to beginning after the space
+`<S-e>` move to the ending word before space
+
+### visual mode
+`U` to convert to uppercase
+`u` to convert to lowercase
+
 ## nvim-tree
 
 `<C-v>`           Open: Vertical Split       |nvim-tree-api.node.open.vertical()|

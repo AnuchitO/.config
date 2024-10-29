@@ -69,7 +69,11 @@ return {
             filters = {
                 dotfiles = false,    -- show dotfiles
                 custom = { ".git" }, -- exclude the .git folder
-                exclude = { ".local", ".gitignore" },
+                exclude = { ".local", ".gitignore", ".env" },
+            },
+            system_open = {
+                cmd = "code",
+                args = {},
             },
             -- git = {
             --     enable = true, -- Disable Git status
