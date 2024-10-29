@@ -48,14 +48,69 @@ return {
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
                             local opts = { noremap = true, silent = true }
+
                             -- Key mappings for LSP functions
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)     -- Jump to definition
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)     -- Jump to references
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)           -- Hover documentation
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- Jump to definition
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts) -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)       -- Hover documentation
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
-                                opts)                                                                                        -- Rename
+                                opts)                                                                                    -- Rename
                         end,
                     }
+                end,
+
+                gopls = function()
+                    require("lspconfig").gopls.setup({
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            local opts = { noremap = true, silent = true }
+                            -- Key mappings for LSP functions
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- Jump to definition
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts) -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)       -- Hover documentation
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+                                opts)                                                                                    -- Rename
+
+
+                            -- Organize imports using code action
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                buffer = bufnr,
+                                callback = function()
+                                    local params = vim.lsp.util.make_range_params()
+                                    params.context = { only = { "source.organizeImports" } }
+                                    local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params,
+                                        1000)
+                                    for _, res in pairs(result or {}) do
+                                        for _, action in pairs(res.result or {}) do
+                                            if action.edit or type(action.command) == "table" then
+                                                if action.edit then
+                                                    vim.lsp.util.apply_workspace_edit(action.edit, "utf-8")
+                                                end
+                                            else
+                                                vim.lsp.buf.execute_command(action)
+                                            end
+                                        end
+                                    end
+                                end,
+                            })
+
+                            -- Format document
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                buffer = bufnr,
+                                callback = function()
+                                    vim.lsp.buf.format({ async = false })
+                                end,
+                            })
+                        end,
+                        settings = {
+                            gopls = {
+                                gofumpt = true,            -- Enable gofumpt for formatting
+                                staticcheck = true,        -- Enable static check
+                                usePlaceholders = true,
+                                completeUnimported = true, -- Auto-import completion
+                            },
+                        },
+                    })
                 end,
 
                 zls = function()
@@ -125,4 +180,3 @@ return {
         })
     end
 }
-
