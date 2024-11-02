@@ -42,8 +42,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- vim.keymap.set("n", "<C-f>", function()
 --     vim.fn.system("tmux neww")
 -- end)
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)
-
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 
 -- replace a copy text with %s/.../.../gI
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -57,7 +56,6 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-
 -- code snippet
 -- go
 vim.keymap.set(
@@ -67,18 +65,6 @@ vim.keymap.set(
 )
 
 
-
 -- no use yet
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
-vim.keymap.set("n", "<leader>vwm", function()
-    require("vim-with-me").StartVimWithMe()
-end)
-vim.keymap.set("n", "<leader>svwm", function()
-    require("vim-with-me").StopVimWithMe()
-end)
-
-
