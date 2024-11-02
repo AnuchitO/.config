@@ -83,24 +83,7 @@ return {
         -- Keymaps for nvim-tree
         vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
 
-        -- Function to expand all nodes
-         -- local function expand_all_nodes()
-         --     local api = require("nvim-tree.api")
-
-         --     -- Expand all nodes
-         --     api.tree.open()
-         --     api.tree.toggle_node()
-         --     api.tree.expand_all()
-         -- end
-         -- vim.keymap.set('n', '<leader>ea', expand_all_nodes, { desc = 'Expand All Nodes in NvimTree' })
-        -- Expand all node useing the keymap <leader>ea and nvim-tree.api
-        vim.keymap.set('n', '<leader>ea', '<cmd>lua require("nvim-tree.api").open()<CR>', { desc = 'Expand All Nodes in NvimTree' })
-        vim.keymap.set("n", "<leader>ea", "<cmd>LspRestart<cr>")
+        -- mapping <leader>ef to focus on the file in the tree
+        vim.keymap.set('n', '<leader>ef', ':NvimTreeFocus<CR>', { desc = 'Focus on file in NvimTree' })
     end,
 }
-
-
-
-
-
-
