@@ -100,9 +100,45 @@ C-b n
 
 ## default vim
 
+`<C-w> s` to split panel horizontally
+`<C-w> v` to split panel vertically
+
 `<C-w-S-j>` to move panel around
+`<C-w> H` to move panel to left
+`<C-w> J` to move panel to bottom
+`<C-w> K` to move panel to top
+`<C-w> L` to move panel to right
+`<C-w> o` to close all other panel
+`<C-w> =` to resize all panel back orginal balance size
+`<C-w> |` to resize panel to full width
+`<C-w> _` to resize panel to full height
+`<C-w> <` to resize panel to smaller width
+`<C-w> >` to resize panel to bigger width
+`<C-w> -` to resize panel to smaller height
+`<C-w> +` to resize panel to bigger height
+
+`<C-w> r` to rotate panel
+
+
+`<C-w> h` to  to left panel
+`<C-w> j` to  to bottom panel
+`<C-w> k` to  to top panel
+`<C-w> l` to  to right panel
+
+`<C-w> w` to move to next panel
+`<C-w> W` to move to previous panel
+
+`<C-w> t` to move to top panel
+`<C-w> b` to move to bottom panel
+
+`<C-w> c` to close panel
+`<C-w> o` to close all other panel
+
 `<C-o>` jump back to previous location
 `<C-i>` jump forward to next location
+
+`<C-^>` to switch between file
+
 
 `:map` to list all keybinding
 `:map <C-o>` to check keybinding for `<C-o>`
@@ -126,7 +162,6 @@ moving back and forward when search inline
 
 `<C-]>` to go to definition
 
-`<C-^>` to switch between file
 
 `b` move to beginning of the curent word
 `e` move to end of the current word
