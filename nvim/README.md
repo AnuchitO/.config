@@ -201,3 +201,9 @@ custom:
 `U` restore --staged
 `=` toggle show/hide diff (show diff)
 `cc` commit with message
+
+### fugitive: stash
+`czw` stash of the work-tree.  Like `czz` with `--keep-index`.
+`czz` stash.  Pass a [count] of 1 to add `--include-untracked` or 2 to add `--all`.
+`czp` topmost stash, or stash@{count}, preserving the index.
+`cz<Space>` command line with ":Git stash ".
