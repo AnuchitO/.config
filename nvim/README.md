@@ -191,3 +191,13 @@ moving back and forward when search inline
 custom:
 `<leader>cl` to comment line
 `<leader>cb` to comment block
+
+
+## fugitive
+
+`a` git add that file
+`P` git add -p all files
+`I` (interactive) add patch specific file
+`U` restore --staged
+`=` toggle show/hide diff (show diff)
+`cc` commit with message
