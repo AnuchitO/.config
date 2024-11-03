@@ -13,12 +13,12 @@ return {
 
         -- always pull rebase with command <leader>ggpur
         vim.keymap.set("n", "<leader>ggpur", function()
-            -- push origin current branch
-            local cmd = string.format("Git push origin %s", current_branch())
+            -- pull rebase origin current branch
+            local cmd = string.format("Git pull -r origin %s", current_branch())
             vim.cmd(cmd)
         end, { desc = "Git Pull with Rebase" })
         vim.keymap.set("n", "<leader>gp", function()
-            -- Push to the current branch
+            -- push origin current branch
             local cmd = string.format("Git push origin %s", current_branch())
 
             -- Execute the command
@@ -26,7 +26,7 @@ return {
         end, {})
 
         -- git stash push czz
-        vim.keymap.set("n", "<leader>gsp", ":Git stash push<CR>", { desc = "Git Stash Push" })
-        vim.keymap.set("n", "<leader>gsl", ":Git stash pop<CR>", { desc = "Git Stash List" })
+        vim.keymap.set("n", "<leader>czz", ":Git stash push<CR>", { desc = "Git Stash Push" })
+        vim.keymap.set("n", "<leader>czp", ":Git stash pop<CR>", { desc = "Git Stash Pop" })
     end
 }
