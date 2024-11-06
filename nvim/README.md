@@ -201,6 +201,8 @@ custom:
 `U` restore --staged
 `=` toggle show/hide diff (show diff)
 `cc` commit with message
+`X` discard change
+`gq` close fugitive windows
 
 ### fugitive: stash
 `czw` stash of the work-tree.  Like `czz` with `--keep-index`.
