@@ -185,6 +185,8 @@ moving back and forward when search inline
 `a`               Create File Or Directory   |nvim-tree-api.fs.create()|
 `f`               Find File                  |nvim-tree-api.fs.find()|
 `F`               Close Find File            |nvim-tree-api.fs.find.close()|
+`Y`               Copy Relative Path         |nvim-tree-api.fs.copy.relative_path()|
+`gy`              Copy Absolute Path         |nvim-tree-api.fs.copy.absolute_path()|
 
 ## commment
 
