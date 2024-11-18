@@ -158,14 +158,18 @@ moving back and forward when search inline
 `0` to move to the beginning of the line
 
 `[d` to go to diagnostic (go to error) `vim.keymap.set('n', [d', vim.diagnostic.goto_prev, {})`
+
 `]d` to go to diagnostic (go to error) `vim.keymap.set('n', [d', vim.diagnostic.goto_next, {})`
 
 `<C-]>` to go to definition
 
 
 `b` move to beginning of the curent word
+
 `e` move to end of the current word
+
 `<S-b>` move to beginning after the space
+
 `<S-e>` move to the ending word before space
 
 ### visual mode
@@ -174,40 +178,67 @@ moving back and forward when search inline
 
 ## nvim-tree
 
+
 `<C-v>`           Open: Vertical Split       |nvim-tree-api.node.open.vertical()|
+
 `<C-x>`           Open: Horizontal Split     |nvim-tree-api.node.open.horizontal()
+
 `E`               Expand All                 |nvim-tree-api.tree.expand_all()|
+
 `o`               Open                       |nvim-tree-api.node.open.edit()|
+
 `O`               Open: No Window Picker     |nvim-tree-api.node.open.no_window_picker()|
+
 `p`               Paste                      |nvim-tree-api.fs.paste()|
+
 `P`               Parent Directory           |nvim-tree-api.node.navigate.parent()|
+
 `D`               Trash                      |nvim-tree-api.fs.trash()|
+
 `a`               Create File Or Directory   |nvim-tree-api.fs.create()|
+
 `f`               Find File                  |nvim-tree-api.fs.find()|
+
 `F`               Close Find File            |nvim-tree-api.fs.find.close()|
+
 `Y`               Copy Relative Path         |nvim-tree-api.fs.copy.relative_path()|
+
 `gy`              Copy Absolute Path         |nvim-tree-api.fs.copy.absolute_path()|
 
 ## commment
 
 custom:
+
 `<leader>cl` to comment line
+
 `<leader>cb` to comment block
 
 
 ## fugitive
 
+
 `a` git add that file
+
 `P` git add -p all files
+
 `I` (interactive) add patch specific file
+
 `U` restore --staged
+
 `=` toggle show/hide diff (show diff)
+
 `cc` commit with message
+
 `X` discard change
+
 `gq` close fugitive windows
 
 ### fugitive: stash
+
 `czw` stash of the work-tree.  Like `czz` with `--keep-index`.
+
 `czz` stash.  Pass a [count] of 1 to add `--include-untracked` or 2 to add `--all`.
+
 `czp` topmost stash, or stash@{count}, preserving the index.
+
 `cz<Space>` command line with ":Git stash ".
