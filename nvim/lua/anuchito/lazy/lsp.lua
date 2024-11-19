@@ -115,6 +115,49 @@ return {
                     })
                 end,
 
+                eslint = function()
+                    require("lspconfig").eslint.setup({
+                        root_dir = function(fname)
+                            return require('lspconfig.util').root_pattern('.eslintrc.json')(fname) or
+                                require('lspconfig.util').root_pattern('package.json', '.git')(fname)
+                        end,
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            local opts = { noremap = true, silent = true }
+                            -- Key mappings for ESLint functions
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+                            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true })
+
+
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                buffer = bufnr,
+                                callback = function()
+                                    vim.lsp.buf.format({ async = false })
+                                end,
+                            })
+                        end,
+                    })
+                end,
+
+                marksman = function()
+                    require("lspconfig").marksman.setup({
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            local opts = { noremap = true, silent = true }
+                            -- Key mappings for LSP functions
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- Jump to definition
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)     -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)       -- Hover documentation
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+                                opts)                                                                                    -- Rename
+                            -- TODO: format markdown
+                            --
+                        end,
+                    })
+                end,
+
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
