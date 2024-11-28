@@ -139,6 +139,9 @@ C-b n
 
 `<C-^>` to switch between file
 
+`ct(` to remove all text until `(`
+`cT)` to remove all text backward until `)`
+
 
 `:map` to list all keybinding
 `:map <C-o>` to check keybinding for `<C-o>`
