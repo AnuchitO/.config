@@ -49,7 +49,7 @@ select_directory() {
       dir=$(zoxide query --list | fzf)
   elif [ "$1" == "files" ]; then
     dir=$(find "${find_paths[@]}" -type f "${excludes_prune[@]}" -o -type f -print | fzf)
-  elif [ "$1" == "dirs" ]; then
+  elif [ "$1" == "folders" ]; then
     dir=$(find "${find_paths[@]}" -type d "${excludes_prune[@]}" -o -type d -print | fzf)
   else
     dir="" # Return empty string
