@@ -49,71 +49,8 @@ select_directory() {
       dir=$(zoxide query --list | fzf)
   elif [ "$1" == "files" ]; then
     dir=$(find "${find_paths[@]}" -type f "${excludes_prune[@]}" -o -type f -print | fzf)
-#     dir=$(find "${find_paths[@]}" -type f \
-#       \( -name ".git" \
-#         -o -name ".githug" \
-#         -o -name ".gradle" \
-#         -o -name ".husky" \
-#         -o -name ".idea" \
-#         -o -name ".meteor" \
-#         -o -name ".next" \
-#         -o -name ".terraform" \
-#         -o -name ".venv" \
-#         -o -name "google-cloud-sdk" \
-#         -o -name "kafka_2.13-3.0.0" \
-#         -o -name "node_modules" \
-#         -o -name "python3.12" \
-#         -o -name "target" \
-#         -o -name "vendor" \
-#         -o -name "x_node_modules" \
-#         -o -path "*/build" \
-#         -o -path "*/coverage/lcov-report" \
-#         -o -path "*/e2e/screenshots" \
-#         -o -path "*/gradle/wrapper" \
-#         -o -path "*/iconnect-cordova" \
-#         -o -path "*/ios/Pods" \
-#         -o -path "*/ios/third-party" \
-#         -o -path "*/lib/python*" \
-#         -o -path "*/reports/html*" \
-#         -o -path "*/ruby/lib" \
-#         -o -path "*/tests/screenshots" \
-#         -o -path "*/tmp/*" \
-#       \) \
-#       -prune \
-#       -o -type f -print | fzf )
   elif [ "$1" == "dirs" ]; then
-    dir=$(find "${find_paths[@]}" -type d \
-      \( -name ".git" \
-        -o -name ".githug" \
-        -o -name ".gradle" \
-        -o -name ".husky" \
-        -o -name ".idea" \
-        -o -name ".meteor" \
-        -o -name ".next" \
-        -o -name ".terraform" \
-        -o -name ".venv" \
-        -o -name "google-cloud-sdk" \
-        -o -name "kafka_2.13-3.0.0" \
-        -o -name "node_modules" \
-        -o -name "python3.12" \
-        -o -name "target" \
-        -o -name "vendor" \
-        -o -name "x_node_modules" \
-        -o -path "*/build" \
-        -o -path "*/coverage/lcov-report" \
-        -o -path "*/e2e/screenshots" \
-        -o -path "*/gradle/wrapper" \
-        -o -path "*/iconnect-cordova" \
-        -o -path "*/ios/Pods" \
-        -o -path "*/ios/third-party" \
-        -o -path "*/lib/python*" \
-        -o -path "*/reports/html*" \
-        -o -path "*/ruby/lib" \
-        -o -path "*/tests/screenshots" \
-        -o -path "*/tmp/*" \
-      \) \
-      -prune \
-      -o -type d -print | fzf )
+    dir=$(find "${find_paths[@]}" -type d "${excludes_prune[@]}" -o -type d -print | fzf)
   else
     dir="" # Return empty string
   fi
