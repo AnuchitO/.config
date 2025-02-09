@@ -1,5 +1,14 @@
 #!/bin/bash
 
+ENABLE_DEBUG=false
+debug() {
+  if [ "$ENABLE_DEBUG" = false ]; then
+      return
+  fi
+
+  echo "DEBUG: $1"
+}
+
 # Function to sanitize session name
 sanitize_session_name() {
   echo "$1" | tr '.' '_' | tr '/' '_'
@@ -72,28 +81,29 @@ select_directory() {
 SELECTED=$(select_directory "$@") # Pass all arguments to select_directory
 WORKING_DIR=$(get_dir "$SELECTED")
 
-echo "Selected: $SELECTED"
+debug "Selected: $SELECTED"
 # Extract directory name for session name
 SESSION_NAME=$(sanitize_session_name "$(basename "$SELECTED")")
-echo "Session name: $SESSION_NAME"
-echo "Directory: $SELECTED"
-echo "Working directory: $WORKING_DIR"
+debug "Session name: $SESSION_NAME"
+debug "Directory: $SELECTED"
+debug "Working directory: $WORKING_DIR"
 
 # Check if the session exists
 if [ -n "$SELECTED" ]; then
-    has_session=$(tmux has-session -t "$SESSION_NAME")
-    if ! [ -n "$has_session" ]; then
+    has_session=$(tmux has-session -t "$SESSION_NAME" 2>/dev/null; echo $?)
+    if ! [ "$has_session" -eq 0 ]; then
         # Create new tmux session with the selected directory and open Vim
         tmux new-session -s "$SESSION_NAME" -d -c "$WORKING_DIR" vim $SELECTED
     fi
 
-    echo "already in tmux session or not"
     if tmux list-clients | grep -q "attached"; then
+        debug "already in tmux session: switch-client"
         tmux switch-client -t "$SESSION_NAME"
     else
+        debug "attach-session"
         tmux attach-session -t "$SESSION_NAME"
     fi
 else
-    echo "No directory selected"
+    debug "No directory selected"
 fi
 
