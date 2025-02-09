@@ -5,6 +5,17 @@ sanitize_session_name() {
   echo "$1" | tr '.' '_' | tr '/' '_'
 }
 
+get_dir() {
+    local dir
+
+    if [ -d "$1" ]; then
+        dir="$1"  # If it's a directory, use it as is.
+    else
+        dir=$(dirname "$1")  # If it's a file, get its directory name.
+    fi
+    echo "$dir"
+}
+
 # Function to handle directory selection
 select_directory() {
   local dir
@@ -58,20 +69,22 @@ select_directory() {
 }
 
 
-DIR=$(select_directory "$@") # Pass all arguments to select_directory
+SELECTED=$(select_directory "$@") # Pass all arguments to select_directory
+WORKING_DIR=$(get_dir "$SELECTED")
 
-echo "Selected directory: $DIR"
+echo "Selected: $SELECTED"
 # Extract directory name for session name
-# SESSION_NAME=$(basename "$DIR") | tr '.' '_'
-SESSION_NAME=$(sanitize_session_name "$(basename "$DIR")")
+SESSION_NAME=$(sanitize_session_name "$(basename "$SELECTED")")
 echo "Session name: $SESSION_NAME"
+echo "Directory: $SELECTED"
+echo "Working directory: $WORKING_DIR"
 
 # Check if the session exists
-if [ -n "$DIR" ]; then
+if [ -n "$SELECTED" ]; then
     has_session=$(tmux has-session -t "$SESSION_NAME")
     if ! [ -n "$has_session" ]; then
         # Create new tmux session with the selected directory and open Vim
-        tmux new-session -s "$SESSION_NAME" -d -c "$DIR" vim $DIR
+        tmux new-session -s "$SESSION_NAME" -d -c "$WORKING_DIR" vim $SELECTED
     fi
 
     echo "already in tmux session or not"
