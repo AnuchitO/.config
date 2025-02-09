@@ -9,44 +9,80 @@ sanitize_session_name() {
 select_directory() {
   local dir
 
+  local find_paths=("$HOME/spaces" "$HOME/go/src" "$HOME/.config")
+
+  # Exclude patterns for -name
+  local exclude_names=(
+   ".DS_Store"
+  )
+
+  # Exclude patterns for -path
+  local exclude_paths=(
+    "*/.git/*" "*/build/*" "*/coverage/lcov-report/*" "*/e2e/screenshots/*"
+    "*/gradle/wrapper/*" "*/iconnect-cordova/*" "*/vendor/*"
+    "*/classes/com*" "*/classes/org*" "*/classes/net*" "*/classes/io*" "*/classes/javax*" "*/classes/java*" "*/classes/kotlin*" "*/classes/scala*"
+    "*/google-cloud-sdk/*" "*/kafka_2.13-3.0.0/*" "*/node_modules/*" "*/python3.12" "*/target/*" "*/x_node_modules/*"
+    "*/.githug/*" "*/.gradle/*" "*/.husky/*" "*/.idea/*" "*/.meteor/*" "*/.next/*" "*/.terraform/*" "*/.venv/*" "*/.stack-work/*" "*/.vscode"
+    "*/ios/Pods*" "*/ios/third-party/*" "*/lib/python*" "*/reports/html*" "*/ruby/lib*"
+    "*/tests/screenshots" "*/tmp/*"
+    "*/.expo/*" "*/.expo-shared/*" "*/.expo-updates/*" "*/.expo-shared/*" "*/.expo-updates/*"
+    "*/*.xcodeproj*" "/*.xcworkspace*" "*/Pods/*" "*/Podfile.lock" "*/Pods.xcodeproj" "*/Pods.xcworkspace"
+    "*/bin/Debug/*" "*/obj/Debug/*" "*/bin/Release/*" "*/obj/Release/*"
+    "*/srv/gitlab/data/*" "*/srv/gitlab/logs/*"
+    "*/.cache/webpack/*" "*/.cache/*" "*/.yarn/*" "*/.yarnrc.yml" "*/.yarnrc" "*/.angular/cache/*"
+  )
+
+  local excludes_prune=( -name ".git" )
+  # Add -name excludes
+  for pattern in "${exclude_names[@]}"; do
+      excludes_prune+=( -o -name "$pattern" )
+  done
+  # Add -path excludes
+  for pattern in "${exclude_paths[@]}"; do
+      excludes_prune+=( -o -path "$pattern" )
+  done
+
+  excludes_prune=( \( "${excludes_prune[@]}" \) -prune ) # Crucial: Prune *after* all excludes
+
   if [ -z "$1" ]; then
       # zoxide query --list | grep -E '(\.idea|\.vscode)' | xargs -I {} zoxide remove "{}"
       dir=$(zoxide query --list | fzf)
-  elif [ "$1" == "file" ]; then
-    dir=$(find "$HOME/spaces" "$HOME/go/src" "$HOME/.config" -type f \
-      \( -name ".git" \
-        -o -name ".githug" \
-        -o -name ".gradle" \
-        -o -name ".husky" \
-        -o -name ".idea" \
-        -o -name ".meteor" \
-        -o -name ".next" \
-        -o -name ".terraform" \
-        -o -name ".venv" \
-        -o -name "google-cloud-sdk" \
-        -o -name "kafka_2.13-3.0.0" \
-        -o -name "node_modules" \
-        -o -name "python3.12" \
-        -o -name "target" \
-        -o -name "vendor" \
-        -o -name "x_node_modules" \
-        -o -path "*/build" \
-        -o -path "*/coverage/lcov-report" \
-        -o -path "*/e2e/screenshots" \
-        -o -path "*/gradle/wrapper" \
-        -o -path "*/iconnect-cordova" \
-        -o -path "*/ios/Pods" \
-        -o -path "*/ios/third-party" \
-        -o -path "*/lib/python*" \
-        -o -path "*/reports/html*" \
-        -o -path "*/ruby/lib" \
-        -o -path "*/tests/screenshots" \
-        -o -path "*/tmp/*" \
-      \) \
-      -prune \
-      -o -type f -print | fzf )
-  elif [ "$1" == "all" ]; then
-    dir=$(find "$HOME/spaces" "$HOME/go/src" "$HOME/.config" -type d \
+  elif [ "$1" == "files" ]; then
+    dir=$(find "${find_paths[@]}" -type f "${excludes_prune[@]}" -o -type f -print | fzf)
+#     dir=$(find "${find_paths[@]}" -type f \
+#       \( -name ".git" \
+#         -o -name ".githug" \
+#         -o -name ".gradle" \
+#         -o -name ".husky" \
+#         -o -name ".idea" \
+#         -o -name ".meteor" \
+#         -o -name ".next" \
+#         -o -name ".terraform" \
+#         -o -name ".venv" \
+#         -o -name "google-cloud-sdk" \
+#         -o -name "kafka_2.13-3.0.0" \
+#         -o -name "node_modules" \
+#         -o -name "python3.12" \
+#         -o -name "target" \
+#         -o -name "vendor" \
+#         -o -name "x_node_modules" \
+#         -o -path "*/build" \
+#         -o -path "*/coverage/lcov-report" \
+#         -o -path "*/e2e/screenshots" \
+#         -o -path "*/gradle/wrapper" \
+#         -o -path "*/iconnect-cordova" \
+#         -o -path "*/ios/Pods" \
+#         -o -path "*/ios/third-party" \
+#         -o -path "*/lib/python*" \
+#         -o -path "*/reports/html*" \
+#         -o -path "*/ruby/lib" \
+#         -o -path "*/tests/screenshots" \
+#         -o -path "*/tmp/*" \
+#       \) \
+#       -prune \
+#       -o -type f -print | fzf )
+  elif [ "$1" == "dirs" ]; then
+    dir=$(find "${find_paths[@]}" -type d \
       \( -name ".git" \
         -o -name ".githug" \
         -o -name ".gradle" \
@@ -79,7 +115,7 @@ select_directory() {
       -prune \
       -o -type d -print | fzf )
   else
-    dir="$1" # Use the argument directly as the directory
+    dir="" # Return empty string
   fi
   echo "$dir"
 }
