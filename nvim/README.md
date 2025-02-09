@@ -142,6 +142,8 @@ C-b n
 `ct(` to remove all text until `(`
 `cT)` to remove all text backward until `)`
 
+`cc` to remove all text in the line and enter insert mode
+`I` to enter insert mode at the beginning of the line
 
 `:map` to list all keybinding
 `:map <C-o>` to check keybinding for `<C-o>`
@@ -166,6 +168,7 @@ moving back and forward when search inline
 
 `<C-]>` to go to definition
 
+`g Ctrl-A` to increment number
 
 `b` move to beginning of the curent word
 

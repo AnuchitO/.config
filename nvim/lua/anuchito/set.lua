@@ -43,3 +43,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+
+-- allow treesitter to show more error message and overflow text down the screen
+vim.opt.cmdheight = 2
+

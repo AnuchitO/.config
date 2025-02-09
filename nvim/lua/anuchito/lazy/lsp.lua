@@ -33,7 +33,8 @@ return {
                 "html",
                 "jsonls",
                 "lua_ls",
-                "markdown_oxide",
+                "marksman",
+                "pyright",
                 "robotframework_ls",
                 "rust_analyzer",
                 "tailwindcss",
@@ -41,6 +42,7 @@ return {
                 "ts_ls",
                 "vimls",
                 "yamlls",
+                "zls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -49,10 +51,14 @@ return {
                         on_attach = function(client, bufnr)
                             local opts = { noremap = true, silent = true }
 
+                            -- show diagnostics on floating window
+                            vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
+
+
                             -- Key mappings for LSP functions
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- Jump to definition
                             -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts) -- Jump to references
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts) -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)     -- Jump to references
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)       -- Hover documentation
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
                                 opts)                                                                                    -- Rename
@@ -66,12 +72,12 @@ return {
                         on_attach = function(client, bufnr)
                             local opts = { noremap = true, silent = true }
                             -- Key mappings for LSP functions
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- Jump to definition
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts) -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)  -- Jump to definition
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)      -- Jump to references
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts) -- Jump to references
-                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)       -- Hover documentation
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)        -- Hover documentation
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
-                                opts)                                                                                    -- Rename
+                                opts)                                                                                     -- Rename
 
 
                             -- Organize imports using code action
@@ -126,6 +132,8 @@ return {
                             local opts = { noremap = true, silent = true }
                             -- Key mappings for ESLint functions
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)      -- Jump to references
+                            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts) -- Jump to references
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
                             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
                             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { noremap = true, silent = true })

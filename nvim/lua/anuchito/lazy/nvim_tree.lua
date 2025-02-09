@@ -67,7 +67,9 @@ return {
                 group_empty = true,
             },
             filters = {
+                enable = true,
                 dotfiles = false,    -- show dotfiles
+                git_clean = false, -- Show files ignored by git
                 custom = { ".git" }, -- exclude the .git folder
                 exclude = { ".local", ".gitignore", ".env" },
             },

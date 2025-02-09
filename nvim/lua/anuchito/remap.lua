@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 
-
 -- move selected line up or dow
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -31,13 +30,21 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("i", "<C-c>", "<C-[>")
+vim.keymap.set("v", "<C-c>", "<C-[>")
+vim.keymap.set("n", "<C-c>", "<C-[>")
+vim.keymap.set("x", "<C-c>", "<C-[>")
 
 -- prevent accident quite
 vim.keymap.set("n", "Q", "<nop>")
 
+-- create new tmux window with currect path add switch to it
+-- vim.keymap.set("n", "<C-t>", "<cmd>silent !tmux neww -c %:p<CR>")
+vim.keymap.set("n", "<C-t>", "<cmd>silent !tmux neww -c " .. (vim.fn.expand('%:p') ~= '' and vim.fn.expand('%:p:h') or vim.fn.getcwd()) .. "<CR>")
+
+
 -- open new tmux session but it not work yet.
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- vim.keymap.set("n", "<C-f>", function()
 --     vim.fn.system("tmux neww")
@@ -47,7 +54,7 @@ vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 -- replace a copy text with %s/.../.../gI
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("n", "<leader>chmod", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vrm", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/anuchito/remap.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
