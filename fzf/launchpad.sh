@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# current directory relative to the script
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 ENABLE_DEBUG=false
 debug() {
   if [ "$ENABLE_DEBUG" = false ]; then
@@ -8,6 +11,10 @@ debug() {
 
   echo "DEBUG: $1"
 }
+
+mkdir -p "$CURRENT_DIR/.cache"
+CACHED_FILES="$CURRENT_DIR/.cache/files"
+CACHED_FOLDERS="$CURRENT_DIR/.cache/folders"
 
 # Function to sanitize session name
 sanitize_session_name() {
@@ -68,9 +75,17 @@ select_directory() {
       # zoxide query --list | grep -E '(\.idea|\.vscode)' | xargs -I {} zoxide remove "{}"
       dir=$(zoxide query --list | fzf)
   elif [ "$1" == "files" ]; then
-    dir=$(find "${find_paths[@]}" -type f "${excludes_prune[@]}" -o -type f -print | fzf)
+      if [ -f "$CACHED_FILES" ]; then
+        dir=$(cat $CACHED_FILES | fzf)
+      else
+        dir=$(find "${find_paths[@]}" -type f "${excludes_prune[@]}" -o -type f -print| tee $CACHED_FILES | fzf)
+      fi
   elif [ "$1" == "folders" ]; then
-    dir=$(find "${find_paths[@]}" -type d "${excludes_prune[@]}" -o -type d -print | fzf)
+      if [ -f "$CACHED_FOLDERS" ]; then
+        dir=$(cat $CACHED_FOLDERS | fzf)
+      else
+        dir=$(find "${find_paths[@]}" -type d "${excludes_prune[@]}" -o -type d -print | tee $CACHED_FOLDERS | fzf)
+      fi
   else
     dir="" # Return empty string
   fi
