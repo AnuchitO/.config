@@ -108,15 +108,18 @@ if [ -n "$SELECTED" ]; then
     has_session=$(tmux has-session -t "$SESSION_NAME" 2>/dev/null; echo $?)
     if ! [ "$has_session" -eq 0 ]; then
         # Create new tmux session with the selected directory and open Vim
-        tmux new-session -s "$SESSION_NAME" -d -c "$WORKING_DIR" vim $SELECTED
+        tmux new-session -d -s "$SESSION_NAME" -c "$WORKING_DIR" vim $SELECTED
+        tmux new-window -d -t "$SESSION_NAME" -n "terminal"  -c "$WORKING_DIR"
+        tmux new-window -d -t "$SESSION_NAME" -n "backend"  -c "$WORKING_DIR"
+        tmux new-window -d -t "$SESSION_NAME" -n "frontend"  -c "$WORKING_DIR"
     fi
 
     if tmux list-clients | grep -q "attached"; then
         debug "already in tmux session: switch-client"
-        tmux switch-client -t "$SESSION_NAME"
+        tmux switch-client -t "${SESSION_NAME}:1"
     else
         debug "attach-session"
-        tmux attach-session -t "$SESSION_NAME"
+        tmux attach-session -t "${SESSION_NAME}:1"
     fi
 else
     debug "No directory selected"
