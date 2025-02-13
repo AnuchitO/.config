@@ -18,7 +18,14 @@ CACHED_FOLDERS="$CURRENT_DIR/.cache/folders"
 
 # Function to sanitize session name
 sanitize_session_name() {
-  echo "$1" | tr '.' '_' | tr '/' '_'
+    path="$1"
+    if [[ -d "$path" ]]; then
+        # If it's a directory, get the last component
+        echo "$(basename "$path" | tr '.' '_' | tr '/' '_')"
+    elif [[ -f "$path" ]]; then
+        # If it's a file, get its containing directory
+        echo "$(basename "$(dirname "$path")" | tr '.' '_' | tr '/' '_')"
+    fi
 }
 
 get_dir() {
@@ -98,7 +105,7 @@ WORKING_DIR=$(get_dir "$SELECTED")
 
 debug "Selected: $SELECTED"
 # Extract directory name for session name
-SESSION_NAME=$(sanitize_session_name "$(basename "$SELECTED")")
+SESSION_NAME=$(sanitize_session_name "$SELECTED")
 debug "Session name: $SESSION_NAME"
 debug "Directory: $SELECTED"
 debug "Working directory: $WORKING_DIR"
