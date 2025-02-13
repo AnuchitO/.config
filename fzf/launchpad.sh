@@ -112,14 +112,16 @@ if [ -n "$SELECTED" ]; then
         tmux new-window -d -t "$SESSION_NAME" -n "terminal"  -c "$WORKING_DIR"
         tmux new-window -d -t "$SESSION_NAME" -n "backend"  -c "$WORKING_DIR"
         tmux new-window -d -t "$SESSION_NAME" -n "frontend"  -c "$WORKING_DIR"
+
+        tmux select-window -t "${SESSION_NAME}:1" # Select the first window (Vim)
     fi
 
     if tmux list-clients | grep -q "attached"; then
         debug "already in tmux session: switch-client"
-        tmux switch-client -t "${SESSION_NAME}:1"
+        tmux switch-client -t "${SESSION_NAME}"
     else
         debug "attach-session"
-        tmux attach-session -t "${SESSION_NAME}:1"
+        tmux attach-session -t "${SESSION_NAME}"
     fi
 else
     debug "No directory selected"
