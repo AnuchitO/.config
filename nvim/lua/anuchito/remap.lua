@@ -1,8 +1,5 @@
 vim.g.mapleader = " "
 
--- use nvim-tree instead.
--- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-
 
 -- move selected line up or dow
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -70,6 +67,28 @@ vim.keymap.set(
     "<leader>ee",
     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
+
+-- CHADTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local is_directory = vim.fn.isdirectory(vim.fn.argv(0)) == 1
+
+        -- Check if Neovim was opened with a directory (like `nvim .`)
+        if is_directory then
+            vim.cmd("CHADopen") -- Open CHADTree
+            vim.cmd("wincmd p") -- Switch focus to CHADTree
+        end
+    end,
+})
+
+-- use nvim-tree instead.
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>ef", "<cmd>CHADopen<CR>", { desc = "Toggle CHADTree" })
+vim.api.nvim_create_user_command("Ex", "CHADopen", {}) -- Make :Ex open CHADTree
+
 
 
 -- no use yet
