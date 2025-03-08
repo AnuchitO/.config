@@ -115,10 +115,11 @@ if [ -n "$SELECTED" ]; then
     has_session=$(tmux has-session -t "$SESSION_NAME" 2>/dev/null; echo $?)
     if ! [ "$has_session" -eq 0 ]; then
         # Create new tmux session with the selected directory and open Vim
-        tmux new-session -d -s "$SESSION_NAME" -c "$WORKING_DIR" vim $SELECTED
-        tmux new-window -d -t "$SESSION_NAME" -n "terminal"  -c "$WORKING_DIR"
-        tmux new-window -d -t "$SESSION_NAME" -n "backend"  -c "$WORKING_DIR"
-        tmux new-window -d -t "$SESSION_NAME" -n "frontend"  -c "$WORKING_DIR"
+        tmux new-session -d -s "$SESSION_NAME" -n ":nvim" -c "$WORKING_DIR" nvim $SELECTED
+
+        tmux new-window -d -t "$SESSION_NAME" -n ":terminal" -c "$WORKING_DIR"
+        tmux new-window -d -t "$SESSION_NAME" -n ":backend"  -c "$WORKING_DIR"
+        tmux new-window -d -t "$SESSION_NAME" -n ":frontend" -c "$WORKING_DIR"
 
         tmux select-window -t "${SESSION_NAME}:1" # Select the first window (Vim)
     fi
