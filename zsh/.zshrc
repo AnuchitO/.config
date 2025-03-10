@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -88,8 +88,19 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='nvim'
 # fi
 
+export EDITOR='nvim'
+
+# Brew shellenv
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
+
+
+# direnv
+eval "$(direnv hook zsh)"
+
+source $HOME/.env
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
@@ -103,6 +114,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
+alias cat='bat'
+alias ls='lsd'
+alias vim='nvim'
