@@ -3,6 +3,7 @@ load_dotenv = true
 
 [whitelist]
 prefix = [
+	"~",
 	"~/go/src/gitlab.com/arise-by-infinitas/ariskil/",
 	"~/spaces/Arise/incubator/ariskill/",
 	"~/go/src/github.com/anuchito/",
