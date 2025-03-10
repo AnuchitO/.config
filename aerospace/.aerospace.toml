@@ -65,7 +65,7 @@ automatically-unhide-macos-hidden-apps = false
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-     6 = ['secondary', 'dell']
+     6 = ['secondary', 'DELL']
 
 
 [gaps]
@@ -73,7 +73,11 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   8
     outer.left =       8
     outer.bottom =     8
-    outer.top =        32
+    outer.top = [
+        { monitor."built-in" = 16 },  # 10px gap for MacBook built-in display
+        { monitor."DELL" = 52 },      # 20px gap for DELL external monitor
+        16                            # Default 15px gap for any other monitor
+    ]
     outer.right =      8
 
 # 'main' binding mode declaration
