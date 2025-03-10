@@ -117,3 +117,8 @@ source $HOME/.env
 alias cat='bat'
 alias ls='lsd'
 alias vim='nvim'
+
+autoload -U compinit
+compinit
+eval "$(zoxide init zsh)"
+
