@@ -48,13 +48,18 @@ for sid in $(aerospace list-workspaces --all); do
 
         # label.font="sketchybar-app-font:Regular:16.0"
         label.font="$FONT:Semibold:13.0"
+        background.color=$BLACK
+        background.corner_radius=8
+        background.height=26
+        background.drawing=on
+        background.drawing=off
         label.background.color=$BACKGROUND_2
         label.background.corner_radius=8
         label.background.height=26
-        label.background.drawing=off
+        label.background.drawing=on
         label.drawing=off
         label="$YABAI_FLOAT"
-        click_script="aerospace workspace $sid"
+        #click_script="aerospace workspace $sid"
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
     )
 
