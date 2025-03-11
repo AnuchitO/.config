@@ -66,6 +66,9 @@ automatically-unhide-macos-hidden-apps = false
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
      6 = ['secondary', 'DELL']
+     7 = ['secondary', 'DELL']
+     8 = ['secondary', 'DELL']
+     9 = ['secondary', 'DELL']
 
 
 [gaps]
@@ -145,6 +148,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-6 = 'workspace 6'
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
 
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
