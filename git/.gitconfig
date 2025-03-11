@@ -1,0 +1,26 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Nong AnuchitO
+
+[core]
+	excludesfile = ~/.config/git/.gitignore
+	symlinks = false
+
+[includeIf "gitdir:~/spaces/AnuchitO/"]
+	path = ~/.config/git/anuchito.github.com.ini
+
+[includeIf "gitdir:~/go/src/github.com/anuchito/"]
+    path = ~/.config/git/anuchito.github.com.ini
+
+[includeIf "gitdir:~/go/src/gitlab.com/anuchito/"]
+    path = ~/.config/git/anuchito.gitlab.com.ini
+
+[init]
+	defaultBranch = main
+
+[alias]
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+
+[commit]
+	template = ~/.config/git/commit-template.txt
+
