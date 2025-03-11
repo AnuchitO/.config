@@ -125,3 +125,16 @@ eval "$(zoxide init zsh)"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+
+## Go
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GOROOT=$HOME/sdk/go
+
+export PATH=$GOROOT/bin:$GOBIN:$PATH
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
