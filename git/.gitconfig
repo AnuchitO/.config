@@ -1,7 +1,4 @@
 # This is Git's per-user configuration file.
-[user]
-	name = Nong AnuchitO
-
 [core]
 	excludesfile = ~/.config/git/.gitignore
 	symlinks = false
