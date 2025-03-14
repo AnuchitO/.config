@@ -1,6 +1,18 @@
 # `ln -sfn .config/aerospace/.aerospace.toml ~/.aerospace.toml`
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# macOS Settings
+# Disable all of these
+
+# System Settings > Desktop & Dock > Drag windows to menu bar to fill screen
+# System Settings > Desktop & Dock > Ask to keep changes when closing documents
+# System Settings > Desktop & Dock > In Full Screen *
+# System Settings > Desktop & Dock > Close windows when quitting an application
+# System Settings > Desktop & Dock > Drag windows to screen edges to tile
+# System Settings > Desktop & Dock > Drag windows to menu bar to fill screen
+# System Settings > Desktop & Dock > Hold T key while dragging windows to tile
+# System Settings > Desktop & Dock > Tiled windows have margins
+
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
