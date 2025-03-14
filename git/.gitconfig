@@ -3,6 +3,9 @@
 	excludesfile = ~/.config/git/.gitignore
 	symlinks = false
 
+[includeIf "gitdir:~/.config/"]
+	path = ~/.config/git/anuchito.github.com.ini
+
 [includeIf "gitdir:~/spaces/AnuchitO/"]
 	path = ~/.config/git/anuchito.github.com.ini
 
