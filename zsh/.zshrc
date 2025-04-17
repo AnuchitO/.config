@@ -117,6 +117,8 @@ source $HOME/.env
 alias cat='bat'
 alias ls='lsd'
 alias vim='nvim'
+alias wifi='~/.config/macos/wifi.sh'
+alias wifiarise='~/.config/macos/wifiarise.sh'
 
 autoload -U compinit
 compinit
