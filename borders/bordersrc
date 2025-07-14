@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# install
+# https://github.com/FelixKratz/JankyBorders
+# brew tap FelixKratz/formulae
+# brew install borders
+
 # Colors taken from tokyonight theme
 red="0xfff7768e"
 green="0xff76f78e"
