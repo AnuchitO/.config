@@ -120,6 +120,9 @@ alias vim='nvim'
 alias wifi='~/.config/macos/wifi.sh'
 alias wifiarise='~/.config/macos/wifiarise.sh'
 
+alias old='alacritty msg config font.size=24'
+alias young='alacritty msg config font.size=16'
+
 autoload -U compinit
 compinit
 eval "$(zoxide init zsh)"
