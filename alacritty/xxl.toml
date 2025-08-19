@@ -1,0 +1,8 @@
+# Extra large size configuration
+[general]
+import = [
+    "~/.config/alacritty/base.toml"
+]
+
+[font]
+size = 28
