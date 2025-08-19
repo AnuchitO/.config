@@ -120,8 +120,10 @@ alias vim='nvim'
 alias wifi='~/.config/macos/wifi.sh'
 alias wifiarise='~/.config/macos/wifiarise.sh'
 
-alias old='alacritty msg config font.size=24'
-alias young='alacritty msg config font.size=16'
+alias m='alacritty msg config font.size=16'  # default
+alias l='alacritty msg config font.size=22'
+alias xl='alacritty msg config font.size=26'
+alias xxl='alacritty msg config font.size=30'
 
 autoload -U compinit
 compinit
