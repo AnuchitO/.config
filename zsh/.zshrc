@@ -126,6 +126,7 @@ alias m="ln -sf ~/.config/alacritty/m.toml ~/.config/alacritty/alacritty.toml"
 alias l="ln -sf ~/.config/alacritty/l.toml ~/.config/alacritty/alacritty.toml"
 alias xl="ln -sf ~/.config/alacritty/xl.toml ~/.config/alacritty/alacritty.toml"
 alias xxl="ln -sf ~/.config/alacritty/xxl.toml ~/.config/alacritty/alacritty.toml"
+alias xxxl="ln -sf ~/.config/alacritty/xxxl.toml ~/.config/alacritty/alacritty.toml"
 
 autoload -U compinit
 compinit
