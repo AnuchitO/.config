@@ -47,3 +47,6 @@ vim.opt.colorcolumn = "80"
 -- allow treesitter to show more error message and overflow text down the screen
 vim.opt.cmdheight = 2
 
+
+-- Enable LSP
+vim.lsp.enable('gopls')

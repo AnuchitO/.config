@@ -6,3 +6,4 @@ require("anuchito.lazy_init")
 
 -- Load keymaps
 require("anuchito.keymaps")
+

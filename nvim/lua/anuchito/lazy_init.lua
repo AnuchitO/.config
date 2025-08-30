@@ -18,6 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
+    -- LSP Configuration
+    { import = "anuchito.lazy.mason" },  -- Mason and LSP servers
+    { import = "anuchito.lazy.lsp" },    -- LSP configuration
+
+    -- Other plugins
     { import = "anuchito.lazy.treesitter" },
     { import = "anuchito.lazy.comment" },
     { import = "anuchito.lazy.telescope" },
@@ -27,7 +32,6 @@ require("lazy").setup({
     { import = "anuchito.lazy.copilot" },
     { import = "anuchito.lazy.vscode_multi_cur" },
     { import = "anuchito.lazy.colors" },
-    -- Additional plugins
     { 'nvim-telescope/telescope-file-browser.nvim' },
   },
   change_detection = { notify = false },
