@@ -17,12 +17,33 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  spec = "anuchito.lazy",
-  change_detection = { notify = false }
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  -- install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  -- checker = { enabled = true },
+  spec = {
+    { import = "anuchito.lazy.treesitter" },
+    { import = "anuchito.lazy.comment" },
+    { import = "anuchito.lazy.telescope" },
+    { import = "anuchito.lazy.nvim_tree" },
+    { import = "anuchito.lazy.undotree" },
+    { import = "anuchito.lazy.harpoon" },
+    { import = "anuchito.lazy.copilot" },
+    { import = "anuchito.lazy.vscode_multi_cur" },
+    { import = "anuchito.lazy.colors" },
+    -- Additional plugins
+    { 'nvim-telescope/telescope-file-browser.nvim' },
+  },
+  change_detection = { notify = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })
 

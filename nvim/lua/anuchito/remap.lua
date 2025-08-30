@@ -49,7 +49,8 @@ vim.keymap.set("n", "<C-t>", "<cmd>silent !tmux neww -c " .. (vim.fn.expand('%:p
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 
 -- replace a copy text with %s/.../.../gI
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
@@ -68,26 +69,9 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
 
--- CHADTree
+-- Disable netrw (using Neotree instead)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-        local is_directory = vim.fn.isdirectory(vim.fn.argv(0)) == 1
-
-        -- Check if Neovim was opened with a directory (like `nvim .`)
-        if is_directory then
-            vim.cmd("CHADopen") -- Open CHADTree
-            vim.cmd("wincmd p") -- Switch focus to CHADTree
-        end
-    end,
-})
-
--- use nvim-tree instead.
--- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>ef", "<cmd>CHADopen<CR>", { desc = "Toggle CHADTree" })
-vim.api.nvim_create_user_command("Ex", "CHADopen", {}) -- Make :Ex open CHADTree
 
 
 
