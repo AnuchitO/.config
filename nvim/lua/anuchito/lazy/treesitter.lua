@@ -4,10 +4,11 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
-	    ensure_installed = {
-		    "css","html", "tsx", "vimdoc", "java", "javascript", "typescript", "c", "lua", "rust",
-		    "jsdoc", "bash", "go", "yaml", "json", "markdown"
-	    },
+            ensure_installed = {
+                "css","html", "tsx", "vimdoc", "java", "javascript", "typescript", "c", "lua", "rust",
+                "jsdoc", "bash", "go", "yaml", "json", "markdown"
+            },
+            playground = { enable = true },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
@@ -42,6 +43,15 @@ return {
         }
 
         vim.treesitter.language.register("templ", "templ")
+
+        -- fallback to neovim syntax highlight which better :TSBufDisable highlight then :echo &syntax
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "csv",
+            callback = function()
+                vim.cmd("TSBufDisable highlight")
+            end,
+        })
+
     end
 }
 
