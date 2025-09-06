@@ -32,6 +32,7 @@ require("lazy").setup({
     { import = "anuchito.lazy.copilot" },
     { import = "anuchito.lazy.vscode_multi_cur" },
     { import = "anuchito.lazy.colors" },
+    { import = "anuchito.lazy.auto_pair" },
     { 'nvim-telescope/telescope-file-browser.nvim' },
   },
   change_detection = { notify = false },
